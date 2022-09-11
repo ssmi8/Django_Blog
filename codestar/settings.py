@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+from django.contrib.messages import constants as messages
 import dj_database_url
 if os.path.isfile("env.py"):
     import env
@@ -17,7 +17,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = ["codestar-blog-ssmi.herokuapp.com", "localhost"]
 
@@ -46,6 +48,15 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+    }
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
